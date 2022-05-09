@@ -9,7 +9,7 @@ input[type=number]::-webkit-outer-spin-button {
     justify-content: center;
 
     img {
-        width: 18.75rem;
+        width: 13rem;
     }
 }
 
@@ -47,4 +47,9 @@ input[type=number]::-webkit-outer-spin-button {
 
 .btn-register:hover {
     background-position: right center;
+}
+
+.card {
+    border-radius: 50px;
+    width: 725px;
 }
