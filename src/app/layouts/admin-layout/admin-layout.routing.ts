@@ -8,6 +8,7 @@ import { TypographyComponent } from 'app/pages/typography/typography.component';
 import { NotificationsComponent } from 'app/pages/notifications/notifications.component';
 import { UpgradeComponent } from 'app/pages/upgrade/upgrade.component';
 import { AdminLayoutComponent } from './admin-layout.component';
+import { UserDashboardComponent } from 'app/pages/users/user-dashboard/user-dashboard.component';
 
 const routes: Routes = [
     {
@@ -15,6 +16,7 @@ const routes: Routes = [
         component: AdminLayoutComponent,
         children: [
             { path: 'dashboard', component: DashboardComponent },
+            { path: 'user-dashboard', component: UserDashboardComponent },
             { path: 'user-profile', component: UserProfileComponent },
             { path: 'table-list', component: TableListComponent },
             { path: 'typography', component: TypographyComponent },
