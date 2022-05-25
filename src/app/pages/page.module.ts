@@ -15,6 +15,7 @@ import { TypographyComponent } from './typography/typography.component';
 import { UpgradeComponent } from './upgrade/upgrade.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { UserDashboardComponent } from './users/user-dashboard/user-dashboard.component';
+import { SpecialistDashboardComponent } from './specialists/specialist-dashboard/specialist-dashboard.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { UserDashboardComponent } from './users/user-dashboard/user-dashboard.co
     TypographyComponent,
     UpgradeComponent,
     UserProfileComponent,
-    UserDashboardComponent
+    UserDashboardComponent,
+    SpecialistDashboardComponent
   ],
   exports: [
     DashboardComponent,

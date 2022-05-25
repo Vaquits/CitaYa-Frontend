@@ -9,6 +9,7 @@ import { NotificationsComponent } from 'app/pages/notifications/notifications.co
 import { UpgradeComponent } from 'app/pages/upgrade/upgrade.component';
 import { AdminLayoutComponent } from './admin-layout.component';
 import { UserDashboardComponent } from 'app/pages/users/user-dashboard/user-dashboard.component';
+import { SpecialistDashboardComponent } from 'app/pages/specialists/specialist-dashboard/specialist-dashboard.component';
 
 const routes: Routes = [
     {
@@ -17,6 +18,7 @@ const routes: Routes = [
         children: [
             { path: 'dashboard', component: DashboardComponent },
             { path: 'user-dashboard', component: UserDashboardComponent },
+            { path: 'specialist-dashboard', component: SpecialistDashboardComponent },
             { path: 'user-profile', component: UserProfileComponent },
             { path: 'table-list', component: TableListComponent },
             { path: 'typography', component: TypographyComponent },
