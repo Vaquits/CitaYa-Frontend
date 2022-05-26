@@ -9,6 +9,21 @@ interface DocumentType {
   shortName: string;
 }
 
+declare interface RouteInfo {
+  path: string;
+  title: string;
+  icon: string;
+  class: string;
+}
+
+interface ResponseLoginSuccessfully {
+  error: string;
+  data: string;
+  userMenu: [RouteInfo]
+}
+
+export const ROUTES: RouteInfo[] = [];
+
 @Component({
   selector: "app-register",
   templateUrl: "./register.component.html",
@@ -20,9 +35,9 @@ export class RegisterComponent implements OnInit {
     private formBuilder: FormBuilder,
     private router: Router,
     private _snackBar: MatSnackBar
-  ) {}
+  ) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   documentTypes: DocumentType[] = [
     { id: 0, shortName: "CC" },
@@ -41,14 +56,22 @@ export class RegisterComponent implements OnInit {
     confirmPassword: "",
   });
 
+  redirectUserDashboard() {
+    this.router.navigate(["/user-dashboard"]).then(() => {
+      window.location.reload();
+    });
+  }
+
+  setMenuDataInLocalStorage(data: ResponseLoginSuccessfully) {
+    let menuItems: [RouteInfo] = data.userMenu;
+    localStorage.setItem('menu', JSON.stringify(menuItems));
+    this.redirectUserDashboard();
+  }
+
   openMessage(message: string, action: string) {
     let snackBarRef = this._snackBar.open(message, action);
     if (message !== "Falta información") {
-      snackBarRef.afterDismissed().subscribe(() => {
-        this.router.navigate(["/user-login"]).then(() => {
-          window.location.reload();
-        });
-      });
+      snackBarRef.afterDismissed().subscribe();
     }
   }
 
@@ -64,8 +87,8 @@ export class RegisterComponent implements OnInit {
     ) {
       this.openMessage("Falta información", "Cerrar");
     } else {
-      this.apiCitaYaService.newUser(this.userForm.value).subscribe(() => {
-        this.openMessage("¡Usuario registrado!", "Ir a inicio de sesión");
+      this.apiCitaYaService.newUser(this.userForm.value).subscribe((data: ResponseLoginSuccessfully) => {
+        this.setMenuDataInLocalStorage(data);
       });
     }
   }
