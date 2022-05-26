@@ -11,6 +11,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { RegisterComponent } from './register/register.component';
 import { SpecialistLoginComponent } from './specialist-login/specialist-login.component';
 import { UserLoginComponent } from './user-login/user-login.component';
+import { HttpClientModule } from '@angular/common/http';
+import { MaterialModule } from 'app/material/material.module';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,9 @@ import { UserLoginComponent } from './user-login/user-login.component';
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
-    MatTooltipModule
+    MatTooltipModule,
+    HttpClientModule,
+    MaterialModule
   ]
 })
 export class AuthModule { }

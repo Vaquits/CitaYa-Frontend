@@ -8,12 +8,16 @@
         <div class="card">
           <h3 class="register-title">¡Un gusto saludarte!</h3>
           <div class="card-body">
-            <form>
+            <form (ngSubmit)="userLoginEntry()" [formGroup]="loginForm">
               <div class="row">
                 <div class="col-md-6">
                   <mat-form-field class="example-full-width">
                     <mat-label>Tipo identificación</mat-label>
-                    <mat-select name="documentType">
+                    <mat-select
+                      name="documentType"
+                      required
+                      formControlName="documentType"
+                    >
                       <mat-option
                         *ngFor="let docType of documentTypes"
                         [value]="docType.shortName"
@@ -28,12 +32,12 @@
                 <div class="col-md-6">
                   <mat-form-field class="example-full-width">
                     <input
-                      type="number"
+                      formControlName="documentNumber"
+                      type="text"
                       name="documentNumber"
                       matInput
                       placeholder="Número de identificación"
-                      maxlength="10"
-                      minlength="7"
+                      required
                     />
                   </mat-form-field>
                 </div>
@@ -42,10 +46,12 @@
                 <div class="col-md-6">
                   <mat-form-field class="example-full-width">
                     <input
+                      formControlName="password"
                       matInput
                       placeholder="Contraseña"
                       type="password"
                       name="password"
+                      required
                     />
                   </mat-form-field>
                 </div>
@@ -61,10 +67,16 @@
             </form>
           </div>
         </div>
-        <div style="text-align: center;">
-        <p>¿Aún no tienes una cuenta?<br><a href="/" style="color: #70BAE6;">Crear una cuenta</a></p>
-        <br>
-        <a href="/" style="color: #70BAE6;">Iniciar sesión como especialista en medicina</a>
+        <div style="text-align: center">
+          <p>
+            ¿Aún no tienes una cuenta?<br /><a href="/" style="color: #70bae6"
+              >Crear una cuenta</a
+            >
+          </p>
+          <br />
+          <a href="/" style="color: #70bae6"
+            >Iniciar sesión como especialista en medicina</a
+          >
         </div>
       </div>
     </div>
