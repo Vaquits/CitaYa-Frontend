@@ -16,6 +16,7 @@ import { UpgradeComponent } from './upgrade/upgrade.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { UserDashboardComponent } from './users/user-dashboard/user-dashboard.component';
 import { SpecialistDashboardComponent } from './specialists/specialist-dashboard/specialist-dashboard.component';
+import { RequestAppointmentComponent } from './request-appointment/request-appointment.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { SpecialistDashboardComponent } from './specialists/specialist-dashboard
     UpgradeComponent,
     UserProfileComponent,
     UserDashboardComponent,
-    SpecialistDashboardComponent
+    SpecialistDashboardComponent,
+    RequestAppointmentComponent
   ],
   exports: [
     DashboardComponent,

@@ -15,5 +15,17 @@
         "target": "http://localhost:3000",
         "secure": false,
         "changeOrigin": false
+    },
+
+    "/api/appointments/specialists": {
+        "target": "http://localhost:3000",
+        "secure": false,
+        "changeOrigin": false
+    },
+
+    "/api/appointments": {
+        "target": "http://localhost:3000",
+        "secure": false,
+        "changeOrigin": false
     }
 }

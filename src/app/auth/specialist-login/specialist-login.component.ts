@@ -14,6 +14,7 @@ declare interface RouteInfo {
 interface ResponseLoginSuccessfully {
   error: string;
   data: string;
+  speciality: number;
   userMenu: [RouteInfo]
 }
 
@@ -48,6 +49,8 @@ export class SpecialistLoginComponent implements OnInit {
 
   setMenuDataInLocalStorage(data: ResponseLoginSuccessfully) {
     let menuItems: [RouteInfo] = data.userMenu;
+    let currentSpeciality: number = data.speciality
+    localStorage.setItem('speciality', JSON.stringify(currentSpeciality));
     localStorage.setItem('menu', JSON.stringify(menuItems));
     this.redirectUserDashboard();
   }

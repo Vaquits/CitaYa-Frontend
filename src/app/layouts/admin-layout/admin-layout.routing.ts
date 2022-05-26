@@ -6,6 +6,7 @@ import { TableListComponent } from 'app/pages/table-list/table-list.component';
 import { AdminLayoutComponent } from './admin-layout.component';
 import { UserDashboardComponent } from 'app/pages/users/user-dashboard/user-dashboard.component';
 import { SpecialistDashboardComponent } from 'app/pages/specialists/specialist-dashboard/specialist-dashboard.component';
+import { RequestAppointmentComponent } from 'app/pages/request-appointment/request-appointment.component';
 
 const routes: Routes = [
     {
@@ -16,6 +17,7 @@ const routes: Routes = [
             { path: 'specialist-dashboard', component: SpecialistDashboardComponent },
             { path: 'user-add-date', component: UserProfileComponent },
             { path: 'user-modify-date', component: TableListComponent },
+            { path: 'request-appointment', component: RequestAppointmentComponent },
             { path: '', redirectTo: '/user-dashboard', pathMatch: 'full' }
         ]
     }

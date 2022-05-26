@@ -13,6 +13,8 @@ export class ApiCitaYaService {
   apiUrlSignup = 'api/signup'
   apiUrlLogin = 'api/login'
   apiUrlLoginSpecialist = 'api/login_specialist'
+  apiUrlAssigmentAppointments = 'api/appointments/specialists'
+  apiUrlUserAppointments = 'api/appointments'
 
   constructor(private http: HttpClient, private router: Router) { }
 
@@ -40,6 +42,22 @@ export class ApiCitaYaService {
   executeLogout() {
     localStorage.clear();
     this.router.navigateByUrl('/user-login');
+  }
+
+  assigmentAppointmentsData(serviceid: any): Observable<any> {
+    return this.http.get<any>(this.apiUrlAssigmentAppointments + '/' + serviceid);
+  }
+
+  userAppointmentsData(userid: any): Observable<any> {
+    return this.http.get<any>(this.apiUrlUserAppointments + '/' + userid);
+  }
+
+  requestAppointment(data: any): Observable<any> {
+    return this.http.post<any>(
+      this.apiUrlUserAppointments,
+      data,
+      { headers: this.httpOptions }
+    )
   }
 
 }

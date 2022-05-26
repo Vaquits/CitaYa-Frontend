@@ -19,5 +19,36 @@
                 </div>
             </div>
         </div>
+        <div class="card-body">
+            <div class="table-responsive">
+              <table class="table table-hover">
+                <thead class="">
+                  <th>Servicio</th>
+                  <th>Fecha</th>
+                  <th>Hora</th>
+                  <th>Acciones</th>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let userAppointment of userAppointmentsList">
+                    <td>
+                      {{ userAppointment.serviceType }}
+                      </td>
+                    <td>
+                      {{ userAppointment.date }}
+                    </td>
+                    <td>
+                      {{ userAppointment.hour }}
+                    </td>
+                    <td>
+                      <div class="action-icon-table">
+                        <i class="material-icons">file_copy</i>
+                        <i class="material-icons">assignment_turned_in</i>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
     </div>
 </div>

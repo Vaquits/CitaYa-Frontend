@@ -1,0 +1,75 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="dashboard-user-image">
+        <img src="../../../../assets/img/prueba.png" alt="logo citaya" />
+      </div>
+    </div>
+    <br />
+    <div class="row">
+      <div class="dashboard-user-description">
+        <div class="col-lg-8 col-md-8 col-sm-10">
+          <h2>Solicitud citas médicas</h2>
+          <p>
+            Ingresa todos los datos que se te pedirán a continuación, para
+            finalizar da clic en el botón aceptar.
+          </p>
+        </div>
+        <div class="col-lg-10 col-md-10 col-sm-12">
+          <form (ngSubmit)="newRequestAppointmentEntry()" [formGroup]="appointmentForm">
+            <div class="row">
+              <div class="col-md-12">
+                <mat-form-field class="example-full-width">
+                    <mat-label>Servicio</mat-label>
+                    <mat-select name="serviceType" formControlName="serviceType" required>
+                      <mat-option
+                        *ngFor="let service of serviceTypes"
+                        [value]="service.serviceName"
+                      >
+                        {{ service.serviceName }}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <mat-form-field class="example-full-width">
+                  <input
+                    formControlName="date"
+                    matInput
+                    placeholder="Fecha"
+                    type="text"
+                    name="date"
+                    required
+                  />
+                </mat-form-field>
+              </div>
+              <div class="col-md-6">
+                <mat-form-field class="example-full-width">
+                  <input
+                    formControlName="hour"
+                    matInput
+                    placeholder="Hora"
+                    type="text"
+                    name="hour"
+                    required
+                  />
+                </mat-form-field>
+              </div>
+            </div>
+            <br>
+            <div class="row">
+              <div class="col-md-12 action-register">
+                <button mat-raised-button type="submit" class="btn-register">
+                  Crear cuenta
+                </button>
+              </div>
+            </div>
+            <div class="clearfix"></div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
