@@ -4,6 +4,21 @@ import { FormBuilder } from '@angular/forms';
 import { ApiCitaYaService } from 'app/services/api-cita-ya.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
+declare interface RouteInfo {
+  path: string;
+  title: string;
+  icon: string;
+  class: string;
+}
+
+interface ResponseLoginSuccessfully {
+  error: string;
+  data: string;
+  userMenu: [RouteInfo]
+}
+
+export const ROUTES: RouteInfo[] = [];
+
 @Component({
   selector: 'app-specialist-login',
   templateUrl: './specialist-login.component.html',
@@ -25,12 +40,24 @@ export class SpecialistLoginComponent implements OnInit {
     password: ''
   })
 
+  redirectUserDashboard() {
+    this.router.navigate(["/specialist-dashboard"]).then(() => {
+      window.location.reload();
+    });
+  }
+
+  setMenuDataInLocalStorage(data: ResponseLoginSuccessfully) {
+    let menuItems: [RouteInfo] = data.userMenu;
+    localStorage.setItem('menu', JSON.stringify(menuItems));
+    this.redirectUserDashboard();
+  }
+
   openMessage(message: string, action: string) {
     let snackBarRef = this._snackBar.open(message, action);
     if (message !== "Falta información") {
       snackBarRef.afterDismissed().subscribe();
-      };
-    }
+    };
+  }
 
   specialistLoginEntry() {
     if (
@@ -39,13 +66,8 @@ export class SpecialistLoginComponent implements OnInit {
     ) {
       this.openMessage("Falta información", "Cerrar");
     } else {
-      this.apiCitaYaService.specialistLogin(this.loginSpecialistForm.value).subscribe((data: {}) => {
-        console.log("un mensaje cualquiera: ", data);
-        /*
-        this.router.navigate(["/specialist-dashboard"]).then(() => {
-          window.location.reload();
-        });
-        */
+      this.apiCitaYaService.specialistLogin(this.loginSpecialistForm.value).subscribe((data: ResponseLoginSuccessfully) => {
+        this.setMenuDataInLocalStorage(data);
       });
     }
   }

@@ -15,14 +15,14 @@ declare interface RouteInfo {
   icon: string;
   class: string;
 }
-export const ROUTES: RouteInfo[] = [
-  { path: '/dashboard', title: 'Dashboard',  icon: 'dashboard', class: '' },
-  { path: '/user-profile', title: 'User Profile',  icon:'person', class: '' },
-  { path: '/table-list', title: 'Table List',  icon:'content_paste', class: '' },
-  { path: '/typography', title: 'Typography',  icon:'library_books', class: '' },
-  { path: '/notifications', title: 'Notifications',  icon:'notifications', class: '' },
-  { path: '/upgrade', title: 'Upgrade to PRO',  icon:'unarchive', class: 'active-pro' },
-];
+
+interface ResponseLoginSuccessfully {
+  error: string;
+  data: string;
+  userMenu: [RouteInfo]
+}
+
+export const ROUTES: RouteInfo[] = [];
 
 @Component({
   selector: 'app-user-login',
@@ -31,20 +31,17 @@ export const ROUTES: RouteInfo[] = [
 })
 export class UserLoginComponent implements OnInit {
 
-  menuItems: any[];
-
   constructor(
     private apiCitaYaService: ApiCitaYaService,
     private formBuilder: FormBuilder,
     private router: Router,
     private _snackBar: MatSnackBar
   ) {
-    
+
   }
 
   ngOnInit(): void {
-    this.menuItems = ROUTES.filter(menuItem => menuItem);
-    localStorage.setItem('menu', JSON.stringify(this.menuItems));
+
   }
 
   documentTypes: DocumentType[] = [
@@ -59,6 +56,18 @@ export class UserLoginComponent implements OnInit {
     documentNumber: "",
     password: ""
   })
+
+  redirectUserDashboard() {
+    this.router.navigate(["/user-dashboard"]).then(() => {
+      window.location.reload();
+    });
+  }
+
+  setMenuDataInLocalStorage(data: ResponseLoginSuccessfully) {
+    let menuItems: [RouteInfo] = data.userMenu;
+    localStorage.setItem('menu', JSON.stringify(menuItems));
+    this.redirectUserDashboard();
+  }
 
   openMessage(message: string, action: string) {
     let snackBarRef = this._snackBar.open(message, action);
@@ -75,13 +84,8 @@ export class UserLoginComponent implements OnInit {
     ) {
       this.openMessage("Falta información", "Cerrar");
     } else {
-      this.apiCitaYaService.userLogin(this.loginForm.value).subscribe((data: {}) => {
-        console.log("un mensaje cualquiera: ", data);
-        /*
-        this.router.navigate(["/user-dashboard"]).then(() => {
-          window.location.reload();
-        });
-        */
+      this.apiCitaYaService.userLogin(this.loginForm.value).subscribe((data: ResponseLoginSuccessfully) => {
+        this.setMenuDataInLocalStorage(data);
       });
     }
   }
