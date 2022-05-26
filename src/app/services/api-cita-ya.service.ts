@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -13,7 +14,7 @@ export class ApiCitaYaService {
   apiUrlLogin = 'api/login'
   apiUrlLoginSpecialist = 'api/login_specialist'
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
   newUser(data: any): Observable<any> {
     return this.http.post<any>(
@@ -35,4 +36,10 @@ export class ApiCitaYaService {
       data,
       { headers: this.httpOptions });
   }
+
+  executeLogout() {
+    localStorage.clear();
+    this.router.navigateByUrl('/user-login');
+  }
+
 }
